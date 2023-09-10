@@ -1,6 +1,7 @@
 package com.github.binarywang.demo.wx.mp.handler;
 
 import com.github.binarywang.demo.wx.mp.builder.TextBuilder;
+import com.github.binarywang.demo.wx.mp.service.IAmapService;
 import com.github.binarywang.demo.wx.mp.utils.JsonUtils;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
@@ -8,6 +9,7 @@ import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -19,6 +21,9 @@ import static me.chanjar.weixin.common.api.WxConsts.XmlMsgType;
  */
 @Component
 public class MsgHandler extends AbstractHandler {
+
+    @Autowired
+    private IAmapService amapService;
 
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
@@ -43,7 +48,13 @@ public class MsgHandler extends AbstractHandler {
         }
 
         //TODO 组装回复消息
-        String content = "收到信息内容：" + JsonUtils.toJson(wxMessage);
+        String content;
+        if (StringUtils.startsWithAny(wxMessage.getContent(), "天气", "Weather", "weather")) {
+            content = amapService.getBeijingWeatherString();
+        } else {
+            content = "收到信息内容：" + JsonUtils.toJson(wxMessage);
+        }
+        // String content = "收到信息内容：" + JsonUtils.toJson(wxMessage);
 
         return new TextBuilder().build(content, wxMessage, weixinService);
 

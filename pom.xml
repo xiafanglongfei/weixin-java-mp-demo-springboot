@@ -9,9 +9,9 @@
         <version>2.6.7</version>
     </parent>
 
-    <groupId>com.github.binarywang</groupId>
+    <groupId>com.xialongfei.mp</groupId>
     <version>1.0.0-SNAPSHOT</version>
-    <artifactId>weixin-java-mp-demo</artifactId>
+    <artifactId>weixin-java-mp-demo-springboot</artifactId>
     <packaging>jar</packaging>
 
     <name>Wechat mp demo with Spring Boot and WxJava</name>
@@ -92,6 +92,19 @@
             <artifactId>rest-assured</artifactId>
             <version>3.1.1</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.83</version>
+        </dependency>
+
+        <!-- okhttp -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
         </dependency>
     </dependencies>
 

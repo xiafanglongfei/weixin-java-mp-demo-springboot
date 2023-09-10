@@ -1,0 +1,18 @@
+logging:
+  level:
+    org.springframework.web: INFO
+    com.github.binarywang.demo.wx.mp: DEBUG
+    me.chanjar.weixin: DEBUG
+wx:
+  mp:
+    useRedis: false
+    redisConfig:
+      host: 127.0.0.1
+      port: 6379
+    configs:
+      - appId: wx0d607bdda2813302 # 第一个公众号的appid
+        secret: 5b56b804a8af9194f4ebd70bff731ad4 # 公众号的appsecret
+        token: token # 接口配置里的Token值
+        aesKey: mEsIeLWHWnSIOmmtTU9ugNvH37GrY2ljOzVWovTek0o # 接口配置里的EncodingAESKey值
+server:
+  port: 80
